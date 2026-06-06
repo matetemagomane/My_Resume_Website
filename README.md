@@ -3,7 +3,7 @@
 A premium, interactive developer curriculum vitae dashboard built from scratch using native HTML5, CSS3 design systems, and lightweight JavaScript as part of the Hex Softwares Internship Program.
 
 ## 🔗 Live Deployments & Portfolios
-* **Live CV Project:** `[Insert your new Netlify link here once deployed]`
+* **Live CV Project:** `https://matete-magomane-resume.netlify.app/`
 * **Main Portfolio Website:** https://matete-magomane-portfolio.netlify.app
 
 ---
