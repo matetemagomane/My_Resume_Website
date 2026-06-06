@@ -30,7 +30,15 @@ Moving away from standard, predictable corporate web templates, this project imp
 1. **Clone the repository locally:**
    ```bash
    git clone https://github.com/matetemagomane/My_Resume_Website.git
-This project was completed as part of the Hex Software Internship Program - Web Development Domain.
+   
+👤 Developer Profile & Contact
+Name: Matete Magomane
+
+Email: matetemagomane760@gmail.com
+
+GitHub Portfolio: github.com/matetemagomane
+
+LinkedIn Network: linkedin.com/in/matete-magomane-88526a377
 
 ---
 © 2026 Matete Magomane. All rights reserved.
