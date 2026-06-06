@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matete Magomane | Developer Curriculum Vitae</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0A0B0E;
+            --bg-surface: #12141C;
+            --gold-primary: #D4AF37;
+            --gold-muted: #AA8439;
+            --gold-glow: rgba(212, 175, 55, 0.15);
+            --text-light: #F4F5F7;
+            --text-dim: #9A9EAB;
+            --border-gold: rgba(212, 175, 55, 0.2);
+            --border-silent: rgba(255, 255, 255, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* PREMIUM APP-STYLE GRID WRAPPER */
+        .wrapper {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 900px) {
+            .wrapper {
+                grid-template-columns: 320px 1fr;
+            }
+        }
+
+        /* LEFT SIDEBAR HERO PROFILE BLOCKS */
+        .profile-aside {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sticky-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 2rem;
+        }
+
+        .avatar-frame {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .avatar-frame::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1px dashed var(--gold-primary);
+            animation: rotateClockwise 20s linear infinite;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--bg-deep);
+        }
+
+        .name-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #FFF;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .gold-divider {
+            height: 1px;
+            width: 60px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+            margin: 1rem auto;
+        }
+
+        .role-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--gold-primary);
+            background: var(--gold-glow);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        /* COMM LINKS MATRIX */
+        .comm-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .comm-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--bg-deep);
+            border: 1px solid var(--border-silent);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .comm-link strong {
+            color: var(--text-light);
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .comm-link:hover {
+            border-color: var(--gold-primary);
+            background: var(--gold-glow);
+            transform: translateX(4px);
+        }
+
+        /* RIGHT CONTENT STREAM PANELS */
+        .main-stream {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .panel {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-silent);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+        }
+
+        .panel-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            letter-spacing: 0.08em;
+            color: var(--gold-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid var(--border-silent);
+            padding-bottom: 0.75rem;
+        }
+
+        /* TIMELINE ENTRIES */
+        .chronicle {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .chronicle-node {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 1px solid var(--border-gold);
+        }
+
+        .chronicle-node::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 6px;
+            width: 7px;
+            height: 7px;
+            background-color: var(--gold-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--gold-primary);
+        }
+
+        .node-meta {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .node-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #FFF;
+        }
+
+        .node-firm {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .node-date {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+
+        .node-desc {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        /* BULLET REFINEMENTS */
+        .bullet-stack {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .bullet-stack li {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 0.3rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .bullet-stack li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--gold-primary);
+        }
+
+        /* MATRIX BADGE INTERACTIVE FILTERS */
+        .filter-ribbon {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .matrix-btn {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-silent);
+            color: var(--text-dim);
+            padding: 0.4rem 1.1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+        }
+
+        .matrix-btn.active, .matrix-btn:hover {
+            background: var(--gold-primary);
+            color: var(--bg-deep);
+            border-color: var(--gold-primary);
+            font-weight: 600;
+        }
+
+        .badge-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .matrix-badge {
+            background: rgba(212, 175, 55, 0.03);
+            border: 1px solid var(--border-silent);
+            color: var(--text-light);
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .matrix-badge:hover {
+            border-color: var(--gold-primary);
+            background: var(--gold-glow);
+            transform: translateY(-1px);
+        }
+
+        /* PROJECT CARDS EXECUTIONS */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 600px) {
+            .showcase-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .showcase-card {
+            background: rgba(255,255,255,0.01);
+            border: 1px solid var(--border-silent);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .showcase-card:hover {
+            border-color: var(--border-gold);
+            background: rgba(212, 175, 55, 0.01);
+        }
+
+        .showcase-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #FFF;
+            margin-bottom: 0.4rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            border-top: 1px solid var(--border-silent);
+            margin-top: 2rem;
+        }
+
+        @keyframes rotateClockwise {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        
+        <aside class="profile-aside">
+            <div class="sticky-card">
+                <div class="avatar-frame">
+                    <img src="img.jpg" alt="Matete Magomane" class="profile-img">
+                </div>
+                <h1 class="name-title">M. Magomane</h1>
+                <div class="gold-divider"></div>
+                <div class="role-badge">Junior Web Developer</div>
+                
+                <div class="comm-stack">
+                    <a href="mailto:matetemagomane760@gmail.com" class="comm-link">
+                        <div>
+                            <span>Secure Email</span>
+                            <strong>matetemagomane760@gmail.com</strong>
+                        </div>
+                    </a>
+                    <a href="tel:+27655228961" class="comm-link">
+                        <div>
+                            <span>Direct Link</span>
+                            <strong>065 522 8961</strong>
+                        </div>
+                    </a>
+                    <a href="https://github.com/matetemagomane" target="_blank" class="comm-link">
+                        <div>
+                            <span>Source Code Hub</span>
+                            <strong>github.com/matetemagomane</strong>
+                        </div>
+                    </a>
+                    <a href="https://matete-magomane-portfolio.netlify.app/" target="_blank" class="comm-link">
+                        <div>
+                            <span>Main Portfolio</span>
+                            <strong>matete-magomane-portfolio.netlify.app</strong>
+                        </div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/matete-magomane-88526a377" target="_blank" class="comm-link" style="border-color: var(--gold-muted); background: var(--gold-glow);">
+                        <div>
+                            <span>Professional Network</span>
+                            <strong style="color: var(--gold-primary);">View LinkedIn Profile</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-stream">
+            
+            <section class="panel">
+                <h2 class="panel-title">Professional Profile</h2>
+                <p style="color: var(--text-dim);">
+                    A versatile Information Technology student and software developer with an established record 
+                    spanning academic support parameters, digital media production, and technical peer coordination. 
+                    Transitioning high-precision videography timeline mastery into structural, modular frontend 
+                    and backend program execution.
+                </p>
+            </section>
+
+            <section class="panel">
+                <h2 class="panel-title">Education Parameters</h2>
+                <div class="chronicle">
+                    <div class="chronicle-node">
+                        <div class="node-meta">
+                            <h3 class="node-title">Diploma in Information Technology</h3>
+                            <span class="node-date">2025 — Present</span>
+                        </div>
+                        <div class="node-firm">IIE Rosebank College | Pretoria CBD</div>
+                        <p class="node-desc" style="margin-top: 0.4rem;">
+                            Currently maintaining a strong academic standing. Specializing in Software Engineering structures, 
+                            algorithmic complexity tracking, Java architectures, and C# environment integrations.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel">
+                <h2 class="panel-title">Technical Matrix</h2>
+                <div class="filter-ribbon">
+                    <button class="matrix-btn active" onclick="sortMatrix('all')">All Stack</button>
+                    <button class="matrix-btn" onclick="sortMatrix('code')">Programming</button>
+                    <button class="matrix-btn" onclick="sortMatrix('suite')">Tools & Systems</button>
+                    <button class="matrix-btn" onclick="sortMatrix('vocal')">Languages</button>
+                </div>
+                <div class="badge-grid">
+                    <span class="matrix-badge" data-tag="code">Java</span>
+                    <span class="matrix-badge" data-tag="code">JavaScript (ES6)</span>
+                    <span class="matrix-badge" data-tag="code">Python</span>
+                    <span class="matrix-badge" data-tag="code">C# Frameworks</span>
+                    <span class="matrix-badge" data-tag="code">HTML5 Layouts</span>
+                    <span class="matrix-badge" data-tag="code">CSS3 Design Systems</span>
+                    
+                    <span class="matrix-badge" data-tag="suite">GitHub</span>
+                    <span class="matrix-badge" data-tag="suite">NetBeans IDE</span>
+                    <span class="matrix-badge" data-tag="suite">Adobe Creative Cloud</span>
+                    <span class="matrix-badge" data-tag="suite">Adobe Premiere Pro</span>
+                    <span class="matrix-badge" data-tag="suite">Adobe Photoshop</span>
+                    
+                    <span class="matrix-badge" data-tag="vocal">English</span>
+                    <span class="matrix-badge" data-tag="vocal">Sepedi</span>
+                    <span class="matrix-badge" data-tag="vocal">Sesotho</span>
+                    <span class="matrix-badge" data-tag="vocal">Setswana</span>
+                </div>
+            </section>
+
+            <section class="panel">
+                <h2 class="panel-title">Professional Chronicles</h2>
+                <div class="chronicle">
+                    
+                    <div class="chronicle-node">
+                        <div class="node-meta">
+                            <h3 class="node-title">Peer Academic Mentor</h3>
+                            <span class="node-date">March 2026 — Present</span>
+                        </div>
+                        <div class="node-firm">IIE Rosebank College</div>
+                        <ul class="bullet-stack">
+                            <li>Guiding three distinct clusters of first-year students through foundational technical onboarding blocks.</li>
+                            <li>Providing interactive logic debugging logic reviews for Java syntaxes and Git/GitHub repository syncing workflows.</li>
+                            <li>Formulating weekly monitoring summaries for college academic services tracking.</li>
+                        </ul>
+                    </div>
+
+                    <div class="chronicle-node">
+                        <div class="node-meta">
+                            <h3 class="node-title">Web Development Intern</h3>
+                            <span class="node-date">January 2026 — March 2026</span>
+                        </div>
+                        <div class="node-firm">Hex Softwares</div>
+                        <ul class="bullet-stack">
+                            <li>Engineered a custom responsive portfolio landing page asset alongside lightweight native JavaScript todo managers.</li>
+                            <li>Isolated rendering errors, structured safe browser storage tracking logs, and handled interactive client elements.</li>
+                        </ul>
+                    </div>
+
+                    <div class="chronicle-node">
+                        <div class="node-meta">
+                            <h3 class="node-title">Data Analysis Intern</h3>
+                            <span class="node-date">January 2026 — February 2026</span>
+                        </div>
+                        <div class="node-firm">Codveda</div>
+                        <ul class="bullet-stack">
+                            <li>Mapped database records and built tracking conditions to clean up variable matching routines within local system modules.</li>
+                        </ul>
+                    </div>
+
+                    <div class="chronicle-node">
+                        <div class="node-meta">
+                            <h3 class="node-title">Lead Creative Videographer</h3>
+                            <span class="node-date">January 2021 — Present</span>
+                        </div>
+                        <div class="node-firm">SCF Studios</div>
+                        <ul class="bullet-stack">
+                            <li>Directing high-definition media rendering streams, story pacing tracks, and managing media deployment operations under aggressive project timelines.</li>
+                            <li>Leveraging Adobe Ecosystem assets to design clean, visual assets matching precise narrative specifications.</li>
+                        </ul>
+                    </div>
+
+                    <div class="chronicle-node">
+                        <div class="node-meta">
+                            <h3 class="node-title">Volunteer Teacher</h3>
+                            <span class="node-date">January 2015 — August 2019</span>
+                        </div>
+                        <div class="node-firm">Sedibeng Sa Bophelo</div>
+                        <ul class="bullet-stack">
+                            <li>Committed a multi-year tenure toward local community upliftment, defining long-term accountability habits and team alignment ethics.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="panel">
+                <h2 class="panel-title">Campus Leadership</h2>
+                <div class="chronicle">
+                    <div class="chronicle-node">
+                        <div class="node-meta">
+                            <h3 class="node-title">Member | Content & Wellness Sub-Committee</h3>
+                            <span class="node-date">March 2025 — Present</span>
+                        </div>
+                        <div class="node-firm">SRC Media Team</div>
+                        <ul class="bullet-stack">
+                            <li>Generating student engagement updates and organizing event documentation pipelines for campus wellness distributions.</li>
+                            <li>Coordinating operational graphics in tandem with the central council to increase overall internal communication loops.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel">
+                <h2 class="panel-title">Technical Projects</h2>
+                <div class="showcase-grid">
+                    <div class="showcase-card">
+                        <div class="showcase-title">QuickChatApp</div>
+                        <p class="node-desc">Real-time chat program execution highlighting networking protocol loops and stable layout synchronization parameters.</p>
+                    </div>
+                    <div class="showcase-card">
+                        <div class="showcase-title">Streaming App</div>
+                        <p class="node-desc">A multimedia player script structured to execute smooth streaming pipelines and local data buffer checks.</p>
+                    </div>
+                    <div class="showcase-card">
+                        <div class="showcase-title">Retail Management System</div>
+                        <p class="node-desc">An inventory tracing configuration tracking store transactions, checking stock lines, and computing receipts.</p>
+                    </div>
+                    <div class="showcase-card">
+                        <div class="showcase-title">Cybersecurity Assistant</div>
+                        <p class="node-desc">A C# and XML-backed terminal app engineered to parse basic network threat categories and manage security rules.</p>
+                    </div>
+                    <div class="showcase-card">
+                        <div class="showcase-title">Mindful Campus Prototype</div>
+                        <p class="node-desc">A structural interface tracking application blueprints mapping wellness metrics for university campuses.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Matete Magomane. Designed Template-Free via Framework Studio. All Systems Verified.</p>
+    </footer>
+
+    <script>
+        function sortMatrix(category) {
+            const controls = document.querySelectorAll('.matrix-btn');
+            controls.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const elements = document.querySelectorAll('.matrix-badge');
+            elements.forEach(item => {
+                if (category === 'all') {
+                    item.style.display = 'block';
+                } else if (item.getAttribute('data-tag') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
